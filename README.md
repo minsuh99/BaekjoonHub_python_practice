@@ -1,2 +1,3 @@
 # BaekjoonHub_python_practice
-This is an auto push repository for Baekjoon Online Judge created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub).
+백준 문제 풀이 연습중 (2024.10.18~)
+(https://github.com/BaekjoonHub/BaekjoonHub).
