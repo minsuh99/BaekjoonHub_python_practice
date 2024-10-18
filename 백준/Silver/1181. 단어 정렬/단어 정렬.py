@@ -22,6 +22,7 @@ for _ in range(N):
 word_list = list(set(word_list)) # 중복 제거
 word_list.sort() # 기준 2
 word_list.sort(key=len) # 기준 1 / 이건 처음 알았다
+# sort 안의 매개변수 key=(기준 함수)를 입력하면 그 기준대로 정렬하는듯
 
 for word in word_list:
-    print(word)  
+    print(word) 
