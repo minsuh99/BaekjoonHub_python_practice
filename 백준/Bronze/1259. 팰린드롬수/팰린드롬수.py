@@ -1,5 +1,3 @@
-import sys
-
 while True:
     num = input()
     if num == '0': break
