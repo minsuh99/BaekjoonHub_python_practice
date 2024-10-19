@@ -9,3 +9,5 @@ while True:
 
 for strs in my_list:
     print(strs)
+
+# try, except 구문도 괜찮네
