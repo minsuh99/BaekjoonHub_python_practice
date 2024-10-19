@@ -1,8 +1,11 @@
-disaster_num = []
-num = 666
 N = int(input())
-while len(disaster_num) < N:
-    if str(num).find('666') != -1:
-        disaster_num.append(num)
+count = 0
+num = 666
+
+while True:
+    if '666' in str(num):
+        count += 1
+    if count == N:
+        print(num)
+        break
     num += 1
-print(disaster_num[-1])
