@@ -19,3 +19,5 @@ while True:
         print("no")
     else:
         print("yes")
+
+# 다시 생각해보기
