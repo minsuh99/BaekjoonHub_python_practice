@@ -1,21 +1,20 @@
-import sys
-input = sys.stdin.readline
-
-lst = []
-n = int(input())
-
-for i in range(1, n+1):
+K = int(input())
+head_list=[]
+for k in range(K):
     h = int(input())
-    a = input().rstrip()
-    for j in a:
+    action = [i for i in input()]
+    
+    for act in action:
+        if act == 'c':
+            h += 1 
+        elif act == 'b':
+            h -= 1
         if h == 0:
             break
-        if j == 'b':
-            h -= 1
-        elif j == 'c':
-            h += 1
-    lst.append(h)
-for k in range(len(lst)):
-    print("Data Set %d:" %  int(k+1))
-    print(lst[k])
-    print("\n", end="")
+    head_list.append(h)
+
+for k in range(K):
+    print(f"Data Set {k+1}:")
+    print(head_list[k])
+    if k != K-1:
+        print()
