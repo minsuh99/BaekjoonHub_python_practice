@@ -1,11 +1,3 @@
-def calc_time(alphabet, push, wait):  
-    for pad in keypad:
-        if alphabet in pad:
-            idx = pad.index(alphabet)
-            return push * (idx + 1) + wait * (idx)
-        
-
-
 p, w = map(int, input().split())
 sentence = [i for i in input()]
 
