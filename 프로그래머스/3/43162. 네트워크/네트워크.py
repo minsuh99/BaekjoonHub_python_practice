@@ -13,8 +13,6 @@ def union(parents, x, y):
     parents[root2] = root1
 
 def solution(n, computers):
-    answer = 0
-    
     computers_edge = []
     for i in range(len(computers)):
         for j in range(i, len(computers[0])):
