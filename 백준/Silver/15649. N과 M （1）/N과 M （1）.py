@@ -1,15 +1,5 @@
-n, m = map(int, input().split())
+from itertools import permutations
 
-def backtrack(start, my_list):
-    if len(my_list) == m:
-        my_list = [str(j) for j in my_list]
-        print(" ".join(my_list))
-        return
-    
-    for i in range(n):
-        if i + 1 not in my_list:
-            my_list.append(i + 1)
-            backtrack(start + 1, my_list)
-            my_list.pop()
-    
-backtrack(0, [])
+n, m = map(int, input().split())
+for comp in list(permutations(range(1, n + 1), m)):
+    print(" ".join(map(str, comp)))
