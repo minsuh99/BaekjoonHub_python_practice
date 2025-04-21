@@ -10,5 +10,7 @@ for i, num in enumerate(sorted_list):
 
 my_list = [my_dict[num] for num in my_list]
 
-for num in my_list:
-    print(num, end=" ")
+# for num in my_list:
+#    print(num, end=" ")
+
+print(*my_list)
