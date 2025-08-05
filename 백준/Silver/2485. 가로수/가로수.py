@@ -1,3 +1,5 @@
+import sys
+
 def gcd(a, b):
     if a == 0:
         return b
@@ -10,6 +12,8 @@ def gcd(a, b):
             big, small = a, b
     
         return gcd(big%small, small)
+
+input = sys.stdin.readline
 
 N = int(input())
 my_list = []
