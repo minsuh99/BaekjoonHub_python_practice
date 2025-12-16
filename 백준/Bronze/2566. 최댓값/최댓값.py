@@ -1,13 +1,14 @@
-num_mat = [[0]*9]*9
-row, col = 0, 0
-max_val = 0
-for i in range(9):
-    num_mat[i] = [int(i) for i in input().split()]
+num_list = [[int(i) for i in input().split()] for _ in range(9)]
+max_val = max([i for j in range(9) for i in num_list[j]])
+max_flag = False
 
 for i in range(9):
-    if max(num_mat[i]) > max_val:
-        max_val = max(num_mat[i])
-        row, col = i, num_mat[i].index(max_val)
+    for j in range(9):
+        if num_list[i][j] == max_val:
+            max_flag = True
+            break
+    if max_flag:
+        break
 
 print(max_val)
-print(row+1, col+1)
+print(i+1, j+1)
