@@ -1,3 +1,8 @@
-n = int(input())
-num = [int(i) for i in input()]
-print(sum(num))
+N = int(input())
+nums = input()
+res = 0
+
+for num in nums:
+    res += int(num)
+
+print(res)
