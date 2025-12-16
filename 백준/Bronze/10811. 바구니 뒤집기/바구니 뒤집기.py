@@ -1,11 +1,14 @@
-n, m = map(int, input().split())
-num_list = list(range(1, n+1))
+N, M = map(int, input().split())
+res = [i for i in range(1, N + 1)]
 
-for _ in range(m):
+for _ in range(M):
     i, j = map(int, input().split())
-    temp = num_list[i-1:j]
-    temp.reverse()
-    num_list[i-1:j] = temp
-    
-for num in num_list:
-    print(num, end=" ")
+    idx1, idx2 = i - 1, j - 1
+    while True:
+        if idx1 >= idx2:
+            break
+        res[idx1], res[idx2] = res[idx2], res[idx1]
+        idx1 += 1
+        idx2 -= 1
+
+print(*res)
