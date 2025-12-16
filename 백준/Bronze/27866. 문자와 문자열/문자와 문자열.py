@@ -1,3 +1,3 @@
-word = input()
+S = input()
 i = int(input())
-print(word[i-1])
+print(S[i-1])
