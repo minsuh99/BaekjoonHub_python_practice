@@ -1,22 +1,14 @@
-num, b = map(int, input().split())
-res = ''
-power = 0
-while True:
-    if num < pow(b, power):
-        break
-    power += 1
+N, B = map(int, input().split())
 
-while True:
-    for i in range(power-1, -1, -1):
-        for j in range(b-1, -1, -1):
-            if num - j * pow(b, i) >= 0:
-                break
-        num -= j * pow(b, i)
-        if j >= 10:
-            res += chr(ord('A') + j - 10)
-        else:
-            res += str(j)
-    if num <= 0:
-        break
+if N == 0:
+    print(0)
+    exit()
 
-print(res)
+digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+res = []
+
+while N > 0:
+    res.append(digits[N % B])
+    N //= B
+
+print("".join(reversed(res)))
