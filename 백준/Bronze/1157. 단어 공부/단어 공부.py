@@ -1,8 +1,7 @@
-word = input().upper()
+from collections import Counter
+my_dict = Counter(input().upper())
 
-count_list = [word.count(chr(c)) for c in range(ord('A'), ord('Z')+1)]
-max_count = count_list.count(max(count_list))
-if max_count > 1:
-    print("?")
-elif max_count == 1:
-    print(chr(ord('A') + count_list.index(max(count_list))))
+max_used = max(my_dict.values())
+check = [k for k in my_dict.keys() if my_dict[k] == max_used]
+
+print("?" if len(check) > 1 else check[0])
