@@ -1,10 +1,9 @@
-n, m = map(int, input().split())
-num_list = [0] * n
+N, M = map(int, input().split())
+res = [0 for _ in range(N)]
 
-for _ in range(m):
+for _ in range(M):
     i, j, k = map(int, input().split())
-    for idx in range(i-1, j):
-        num_list[idx] = k
+    for idx in range(i - 1, j):
+        res[idx] = k
 
-for num in num_list:
-    print(num, end=" ")
+print(*res)
