@@ -1,15 +1,14 @@
-n, m = map(int, input().split())
+N, M = map(int, input().split())
+A, B = [], []
+C = []
 
-A = [[0]*m]*n
-B = [[0]*m]*n
+for _ in range(N):
+    A.append(list(map(int, input().split())))
 
-for i in range(n):
-    A[i] = [int(i) for i in input().split()]
+for _ in range(N):
+    B.append(list(map(int, input().split())))
 
-for i in range(n):
-    B[i] = [int(i) for i in input().split()]
+C = [[a+b for a, b in zip(A[j], B[j])] for j in range(N)]
 
-for i in range(n):
-    for j in range(m):
-        print(A[i][j] + B[i][j], end=" ")
-    print()
+for row in C:
+    print(*row)
