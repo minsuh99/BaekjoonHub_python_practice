@@ -1,6 +1,8 @@
-my_list = [chr(i) for i in range(ord('a'), ord('z')+1)]
-
+alphabet = [-1 for _ in range(26)]
 word = input()
 
-for alphabet in my_list:
-    print(word.find(alphabet), end=" ")
+for i in range(len(word)):
+    if alphabet[ord(word[i]) - ord('a')] == -1:
+        alphabet[ord(word[i]) - ord('a')] = i
+
+print(*alphabet)
