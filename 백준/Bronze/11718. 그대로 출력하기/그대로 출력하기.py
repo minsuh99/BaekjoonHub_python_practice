@@ -1,13 +1,5 @@
 import sys
-my_list = []
-while True:
-    s = sys.stdin.readline().rstrip()
-    if s != "":
-        my_list.append(s)
-    else:
-        break
+input = sys.stdin.readlines
 
-for strs in my_list:
-    print(strs)
-
-# try, except 구문도 괜찮네
+for line in input():
+    print(line.rstrip())
