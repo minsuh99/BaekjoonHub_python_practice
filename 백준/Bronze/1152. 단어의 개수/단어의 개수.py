@@ -1,2 +1,1 @@
-sentence = input()
-print(len(sentence.split()))
+print(len(input().split()))
