@@ -1,6 +1,7 @@
 import sys
+input = sys.stdin.readline
 
-T = int(sys.stdin.readline())
-
+T = int(input())
 for _ in range(T):
-    print(sum([int(i) for i in sys.stdin.readline().split()]))
+    a, b = map(int, input().split())
+    print(a + b)
