@@ -1,9 +1,8 @@
-n, m = map(int, input().split())
-num_list = list(range(1, n+1))
+N, M = map(int, input().split())
+res = [i for i in range(1, N + 1)]
 
-for _ in range(m):
-    a, b = map(int, input().split())
-    num_list[a-1], num_list[b-1] = num_list[b-1], num_list[a-1]
+for _ in range(M):
+    i, j = map(int, input().split())
+    res[i - 1], res[j - 1] = res[j - 1], res[i - 1]
 
-for num in num_list:
-    print(num, end=" ")
+print(*res)
