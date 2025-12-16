@@ -1,13 +1,10 @@
-my_list = []
-max_len = 0
-for i in range(5):
-    my_list.append(input())
-    if len(my_list[i]) > max_len:
-        max_len = len(my_list[i])
+my_list = [[i for i in input().rstrip()[::-1]] for _ in range(5)]
+res = []
+max_len = max([len(l) for l in my_list])
 
-for i in range(max_len):
-    for j in range(5):
-        if i+1 > len(my_list[j]):
-            continue
-        else:
-            print(my_list[j][i], end="")
+for _ in range(max_len):
+    for i in range(5):
+        if my_list[i]:
+            res.append(my_list[i].pop())
+
+print("".join(res))
