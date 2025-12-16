@@ -1,2 +1,2 @@
-n = int(input())
-print("long " * (n//4) + "int")
+N = int(input())
+print("long " * (N // 4) + "int")
