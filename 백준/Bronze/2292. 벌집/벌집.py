@@ -1,11 +1,11 @@
-n = int(input())
-res = 1
-path_num = 1
+N = int(input())
+res = 0
 
 while True:
-    if n <= res:
+    temp = res * (res + 1) // 2
+    if temp <= N - 1 <= 6 * temp:
         break
-    else:
-        res += path_num * 6
-        path_num += 1
-print(path_num)
+    
+    res += 1
+    
+print(res + 1)
