@@ -1,7 +1,5 @@
-my_list = []
-
+num_list = []
 for _ in range(10):
-    num = int(input())
-    my_list.append(num%42)
+    num_list.append(int(input())%42)
 
-print(len(set(my_list)))
+print(len(set(num_list)))
