@@ -1,7 +1,5 @@
-import sys
-
-T = int(sys.stdin.readline())
+T = int(input())
 
 for i in range(T):
-    res = sum([int(i) for i in sys.stdin.readline().split()])
-    print(f"Case #{i+1}: {res}")
+    a, b = map(int, input().split())
+    print(f"Case #{i+1}: {a+b}")
