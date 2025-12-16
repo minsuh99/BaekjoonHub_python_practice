@@ -1,7 +1,6 @@
-n = int(input())
-num_list = [int(i) for i in input().split()]
+N = int(input())
+num_list = list(map(int, input().split()))
+M = max(num_list)
 
-max_num = max(num_list)
-new_list = [(i/max_num) * 100 for i in num_list]
-
-print(sum(new_list) / n)
+res = [i/M * 100 for i in num_list]
+print(sum(res) / len(res))
