@@ -1,20 +1,10 @@
-def cal_change(x):
-    current = [25, 10, 5, 1]
-    temp = []
-    for cur in current:
-        temp.append(x // cur)
-        x %= cur
-    
-    return temp
-
-
-
 T = int(input())
+coins = [25, 10, 5, 1]
 
 for _ in range(T):
-    money = int(input())
-    res = cal_change(money)
-    
-    for i in res:
-        print(i, end=" ")
-    print()
+    C = int(input())
+    res = []
+    for coin in coins:
+        res.append(C//coin)
+        C %= coin
+    print(*res)
