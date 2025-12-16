@@ -1,5 +1,11 @@
-n = int(input())
-num = [int(i) for i in input().split()]
+N = int(input())
+my_list = list(map(int, input().split()))
 v = int(input())
+res = 0
 
-print(num.count(v))
+if v in my_list:
+    for num in my_list:
+        if num == v:
+            res += 1
+
+print(res)
