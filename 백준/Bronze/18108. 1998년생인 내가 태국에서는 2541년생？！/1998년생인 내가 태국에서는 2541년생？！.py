@@ -1,1 +1,2 @@
-print(int(input())-543)
+y = int(input())
+print(y - 543)
