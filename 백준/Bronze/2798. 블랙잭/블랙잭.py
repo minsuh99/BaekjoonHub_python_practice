@@ -1,13 +1,8 @@
-n, m = map(int, input().split())
-num_list = [int(i) for i in input().split()]
-res = []
-temp = 0
+from itertools import combinations
+import sys
+input = sys.stdin.readline
 
-for i in range(n):
-    for j in range(i+1, n):
-        for k in range(j+1, n):
-            Sum = num_list[i]+num_list[j]+num_list[k]
-            if Sum <= m:
-                res.append(Sum)
 
-print(max(res))
+N, M = map(int, input().split())
+card = [int(i) for i in input().split()]
+print(max([sum(i) for i in list(combinations(card, 3)) if sum(i) <= M]))
