@@ -1,26 +1,26 @@
-n, m = map(int,input().split())
-chess_board = []
-res = []
-check_list1 = ['B', 'W']
-check_list2 = ['W', 'B']
+import sys
+input = sys.stdin.readline
 
-for _ in range(n):
-    chess_board.append(list(input()))
+N, M = map(int, input().split())
 
-for i in range(n-7): # row
-    for j in range(m-7): #column
-        cnt1 = 0
-        cnt2 = 0
-        new_chess = [row[j:j+8] for row in chess_board[i:i+8]]
+my_list = []
+res = 64
 
-        for r in range(8):
-            for c in range(8):
-                if new_chess[r][c] != check_list1[(r+c) % 2]:
-                    cnt1 += 1
-                if new_chess[r][c] != check_list2[(r+c) % 2]:
-                    cnt2 += 1
-                
-                    
-        res.append(min(cnt1, cnt2))
+for _ in range(N):
+    my_list.append(list(input().rstrip()))
 
-print(min(res))
+for row in range(N - 7):
+    for col in range(M - 7):
+        cnt = 0
+        for i in range(8):
+            for j in range(8):
+                if (i + j) % 2 == 0:
+                    if my_list[row + i][col + j] != "W":
+                        cnt += 1
+                else:
+                    if my_list[row + i][col + j] != "B":
+                        cnt += 1
+        
+        res = min(res, cnt, 64 - cnt)
+
+print(res)
