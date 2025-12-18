@@ -1,26 +1,20 @@
-def is_prime(x):
-    num_list = set()
-    for i in range(1, int(x ** 0.5) + 1):
-        if x % i == 0:
-            num_list.add(i)
-            num_list.add(x // i)
-    
-    if len(num_list) == 2:
-        return True
-    else:
+def is_prime(n):
+    if n == 1:
         return False
+    
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    
+    return True
 
-m = int(input())
-n = int(input())
+M = int(input())
+N = int(input())
 
-res = []
+prime_list = [i for i in range(M, N + 1) if is_prime(i)]
 
-for num in range(m, n+1):
-    if is_prime(num):
-        res.append(num)
-
-if len(res) == 0:
-    print(-1)
+if prime_list:
+    print(sum(prime_list))
+    print(prime_list[0])
 else:
-    print(sum(res))
-    print(min(res))
+    print(-1)
