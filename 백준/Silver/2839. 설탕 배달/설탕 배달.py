@@ -1,12 +1,18 @@
-n = int(input())
-cnt_list = []
+N = int(input())
 
-for i in range((n // 3) + 1):
-    if (n - 3*i) % 5 == 0:
-        j = (n - 3*i) // 5
-        cnt_list.append(i + j)
+cnt_3 = 0
+cnt_5 = 0
 
-if len(cnt_list) == 0:
-    print(-1)
-else:
-    print(min(cnt_list))
+while True:
+    if N % 5 == 0:
+        cnt_5 = N // 5
+        break
+    
+    if N < 3:
+        print(-1)
+        exit()
+    
+    N -= 3
+    cnt_3 += 1
+    
+print(cnt_3 + cnt_5)
