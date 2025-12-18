@@ -1,7 +1,9 @@
-len_list = sorted([int(i) for i in input().split()])
+import sys
+input = sys.stdin.readline
 
-if len_list[2] >= len_list[0] + len_list[1]:
-    len_list.pop()
-    len_list.append(len_list[0] + len_list[1] - 1)
+a, b, c = map(int ,input().split())
 
-print(sum(len_list))
+if sum([a, b, c]) > max(a, b, c) * 2:
+    print(a + b + c)
+else:
+    print(2 * (sum([a, b, c]) - max(a, b, c)) - 1)
