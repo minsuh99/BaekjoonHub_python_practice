@@ -1,17 +1,16 @@
-point_list = []
-ans_list = []
-
-max_x, max_y, min_x, min_y = 0, 0, 1001, 1001
+points = set()
+must_points = set()
 
 for _ in range(3):
-    a, b = map(int, input().split())
-    point_list.append((a,b))
-    max_x = max(a, max_x)
-    max_y = max(b, max_y)
-    min_x = min(a, min_x)
-    min_y = min(b, min_y)
+    x, y = map(int, input().split())
+    points.add((x, y))
 
-ans_list = [(min_x, min_y), (min_x, max_y), (max_x, min_y), (max_x, max_y)]
+coord_x = set([point[0] for point in points])
+coord_y = set([point[1] for point in points])
 
-res = [i for i in ans_list if i not in point_list]
-print(res[0][0], res[0][1])
+for x in coord_x:
+    for y in coord_y:
+        must_points.add((x, y))
+
+res = list(must_points - points)
+print(list(*res)[0], list(*res)[1])
