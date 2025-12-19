@@ -1,10 +1,13 @@
 import sys
+input = sys.stdin.readline
 
-N = int(sys.stdin.readline())
-num_list = []
+N = int(input())
+my_list = []
 
 for _ in range(N):
-    num_list.append(int(sys.stdin.readline()))
+    my_list.append(int(input()))
 
-for num in sorted(num_list):
+my_list.sort()
+
+for num in my_list:
     print(num)
