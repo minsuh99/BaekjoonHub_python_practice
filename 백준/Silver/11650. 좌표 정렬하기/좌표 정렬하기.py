@@ -1,14 +1,15 @@
 import sys
+input = sys.stdin.readline
 
-cor_list=[]
-N = int(sys.stdin.readline())
+my_list = []
+
+N = int(input())
 
 for _ in range(N):
-    a, b = map(int, sys.stdin.readline().split())
-    cor_list.append((a,b))
+    x, y = map(int, input().split())
+    my_list.append((x, y))
 
-cor_list.sort(key=lambda x:x[1])
-cor_list.sort(key=lambda x:x[0])
+my_list.sort(key=lambda x:((x[0], x[1])))
 
-for i in range(N):
-    print(cor_list[i][0], cor_list[i][1])
+for coord in my_list:
+    print(coord[0], coord[1])
