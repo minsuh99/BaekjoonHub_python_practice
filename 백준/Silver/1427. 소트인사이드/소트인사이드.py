@@ -1,3 +1,6 @@
-num = [i for i in input()]
-num.sort(reverse=True)
-print("".join(num))
+import sys
+sys = sys.stdin.readline
+
+N = list(input())
+N.sort(reverse=True)
+print("".join(N))
