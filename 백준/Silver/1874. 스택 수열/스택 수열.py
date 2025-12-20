@@ -1,26 +1,25 @@
 import sys
+input = sys.stdin.readline
 
-n = int(sys.stdin.readline())
-my_list = []
-for _ in range(n):
-    my_list.append(int(sys.stdin.readline()))
-
-temp = [i for i in range(1, n+1)]
+N = int(input())
 stack = []
 res = []
+cur_num = 0
 
-cur_idx = 0
+for _ in range(N):
+    temp = int(input())
 
-while cur_idx < n:
-    if stack and stack[-1] == my_list[cur_idx]:
-        res.append("-")
-        stack.pop()
-        cur_idx += 1
-    elif temp and temp[0] <= my_list[cur_idx]:
+    while cur_num < temp:
+        cur_num += 1
+        stack.append(cur_num)
         res.append("+")
-        stack.append(temp.pop(0))
+
+    if stack and stack[-1] == temp:
+        stack.pop()
+        res.append("-")
     else:
         print("NO")
         sys.exit(0)
-        
-print("\n".join(res))
+
+for i in res:
+    print(i)
