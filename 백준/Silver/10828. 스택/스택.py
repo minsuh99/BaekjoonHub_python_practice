@@ -1,21 +1,19 @@
 import sys
+input = sys.stdin.readline
 
-n = int(sys.stdin.readline())
-my_list = list()
+N = int(input())
+stack = []
 
-for _ in range(n):
-    command = sys.stdin.readline().split()
-    if len(command) == 2:
-        op, num = command[0], int(command[1])
-        if op == 'push':
-            my_list.append(num)
-    else:
-        op = command[0]
-        if op == 'pop':
-            print(my_list.pop() if len(my_list) != 0 else -1)
-        elif op == 'size':
-            print(len(my_list))
-        elif op == 'empty':
-            print(1 if len(my_list)==0 else 0)
-        elif op == 'top':
-            print(my_list[-1] if len(my_list) != 0 else -1)
+for _ in range(N):
+    temp = input().split()
+    
+    if temp[0] == "push":
+        stack.append(int(temp[1]))
+    elif temp[0] == "pop":
+        print(stack.pop() if stack else -1)
+    elif temp[0] == "size":
+        print(len(stack))
+    elif temp[0] == "empty":
+        print(0 if stack else 1)
+    elif temp[0] == "top":
+        print(stack[-1] if stack else -1)
