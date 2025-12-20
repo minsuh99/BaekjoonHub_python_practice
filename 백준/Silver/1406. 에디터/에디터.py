@@ -1,20 +1,28 @@
-import sys
 from collections import deque
+import sys
+input = sys.stdin.readline
 
-base_word = list(sys.stdin.readline().rstrip())
-M = int(sys.stdin.readline().rstrip())
-attach_word = deque()
+word = input().rstrip()
+
+cur_left = deque(list(word))
+cur_right = deque()
+
+M = int(input())
 
 for _ in range(M):
-    command = sys.stdin.readline().rstrip().split()
-    if command[0] == "L" and base_word:
-        attach_word.appendleft(base_word.pop())
-    elif command[0] == "D" and attach_word:
-        base_word.append(attach_word.popleft())
-    elif command[0] == "B" and base_word:
-        base_word.pop()
-    elif command[0] == "P":
-        base_word.append(command[1])
+    temp = input().split()
+    
+    if temp[0] == "L":
+        if cur_left:
+            cur_right.appendleft(cur_left.pop())
 
-final_word = base_word + list(attach_word)
-print("".join(final_word))
+    elif temp[0] == "D":
+        if cur_right:
+            cur_left.append(cur_right.popleft())
+    elif temp[0] == "B":
+        if cur_left:
+            cur_left.pop()
+    elif temp[0] == "P":
+        cur_left.append(temp[1])
+
+print("".join(list(cur_left) +  list(cur_right)))
