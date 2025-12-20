@@ -1,14 +1,20 @@
-import sys
+T = int(input())
 
-
-N = int(sys.stdin.readline())
-
-for _ in range(N):
-    sentence = sys.stdin.readline().rstrip()
-    for _ in range(len(sentence)):
-        sentence = sentence.replace('()', '')
+for _ in range(T):
+    stack = []
+    temp = input().rstrip()
+    res = "YES"
     
-    if len(sentence) > 0:
-        print("NO")
-    else:
-        print("YES")
+    for s in temp:
+        if s == "(":
+            stack.append(s)
+        elif s == ")":
+            if stack and stack[-1] == "(":
+                stack.pop()
+            else:
+                res = "NO"
+                break
+    if stack:
+        res = "NO"
+    
+    print(res)
