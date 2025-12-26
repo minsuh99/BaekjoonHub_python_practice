@@ -1,17 +1,12 @@
+def gcd(a, b):
+    if a == 0:
+        return b
+    else:
+        x, y = max(a, b), min(a, b)
+        return gcd(x % y, y)
+    
 T = int(input())
 
 for _ in range(T):
-    a, b = map(int, input().split())
-    answer = a * b
-    
-    large = a if a > b else b
-    small = b if a > b else a
-    while True:
-        (large, small) = (large, small) if large > small else (small, large)
-        large %= small
-        
-        if large == 0:
-            answer //= small
-            break
-    
-    print(answer)
+    A, B = map(int, input().split())
+    print(A*B // gcd(A, B))
