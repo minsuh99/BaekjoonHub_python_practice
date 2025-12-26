@@ -1,6 +1,3 @@
-import sys
-input = sys.stdin.readline
-
 N = int(input())
 res = 1
 
