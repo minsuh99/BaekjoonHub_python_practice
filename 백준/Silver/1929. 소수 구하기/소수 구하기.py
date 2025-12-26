@@ -1,15 +1,15 @@
-m, n = map(int, input().split())
+def is_prime(n):
+    if n == 1:
+        return False
 
-num_list = [False, False] + [True] * (n-1)
-res_list = []
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+        
+    return True
 
-for i in range(2, n+1):
-    if num_list[i]:
-        res_list.append(i)
-        for j in range(2*i, n+1, i):
-            num_list[j] = False
+M, N = map(int, input().split())
 
-res_list = [i for i in res_list if i >= m]
-
-for num in res_list:
-    print(num)
+for num in range(M, N + 1):
+    if is_prime(num):
+        print(num)
