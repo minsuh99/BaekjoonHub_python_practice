@@ -1,16 +1,16 @@
-n = int(input())
-res = 1
+fac = [1 for _ in range(501)]
+for i in range(1, 501):
+    fac[i] = fac[i-1] * i
 
-for i in range(1, n+1):
-    res *= i
+N = int(input())
+res = 0
 
-res = str(res)[::-1]
+temp = fac[N]
+while True:
+    if temp % 10 == 0:
+        res += 1
+        temp //= 10
+    else:
+        break
 
-
-if res.find('0') == -1:
-    print(0)
-else:
-    for i in range(res.find('0')+1, len(res)+1):
-        if res[i] != '0':
-            print(i)
-            break
+print(res)
