@@ -1,19 +1,13 @@
-my_list = [0] * 1000001
+Max = 1000001
+d = [0 for _ in range(Max)]
+d[1] = 0
+d[2] = 1
+d[3] = 1
 
-my_list[1] = 0
-my_list[2] = 1
-my_list[3] = 1
+for i in range(4, Max):
+    flag1 = (i % 2 != 0)
+    flag2 = (i % 3 != 0)
+    d[i] = min(d[i-1] + 1, (flag1 * Max + (d[int(i // 2)] + 1)), (flag2 * Max + (d[int(i // 3)] + 1)))
 
 n = int(input())
-
-for i in range(4, n + 1):
-    num2 = 1000001
-    num3 = 1000001
-    num1 = my_list[i-1] + 1
-    if i % 2 == 0:
-        num2 = my_list[i // 2] + 1
-    if i % 3 == 0:
-        num3 = my_list[i // 3] + 1
-    my_list[i] = min(min(num1, num2), num3)
-
-print(my_list[n])
+print(d[n])
