@@ -1,13 +1,11 @@
-n = int(input())
+dp = [0 for _ in range(11)]
+dp[1] = 1
+dp[2] = 2
+dp[3] = 4
 
-my_list = [0 for _ in range(12)]
+for i in range(4, 11):
+    dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
 
-my_list[1] = 1
-my_list[2] = 2
-my_list[3] = 4
-
-for i in range(4, 12):
-    my_list[i] = my_list[i - 3] + my_list[i - 2] + my_list[i - 1]
-
-for _ in range(n):
-    print(my_list[int(input())])
+T = int(input())
+for _ in range(T):
+    print(dp[int(input())])
