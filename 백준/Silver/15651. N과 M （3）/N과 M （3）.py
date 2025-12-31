@@ -1,12 +1,8 @@
-n, m = map(int, input().split())
-def backtrack(start, my_list):
-    if len(my_list) == m:
-        print(" ".join(map(str, my_list)))
-        return
-    
-    for i in range(n):
-        my_list.append(i + 1)
-        backtrack(i, my_list)
-        my_list.pop()
+import sys
+sys.setrecursionlimit(10 ** 9)
+from itertools import product
 
-backtrack(0, [])
+N, M = map(int, input().split())
+my_list = [int(i) for i in range(1, N + 1)]
+for res in list(product(my_list, repeat=M)):
+    print(*res)
