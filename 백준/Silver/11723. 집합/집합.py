@@ -1,29 +1,23 @@
 import sys
+input = sys.stdin.readline
 
-m = int(sys.stdin.readline())
-my_set = set()
+S = [0 for _ in range(21)]
+M = int(input())
 
-for _ in range(m):
-    command = list(sys.stdin.readline().split())
-    
-    if len(command) == 1:
-        if command[0] == 'all':
-            my_set = set([int(i) for i in range(1, 21)])
-        elif command[0] == 'empty':
-            my_set.clear()
-    else:
-        operator, num = command[0], int(command[1])
-        if operator == 'add':
-            my_set.add(num)
-            
-        elif operator == 'remove':
-            my_set.discard(num)
-            
-        elif operator == 'check':
-            print(1 if num in my_set else 0)
-            
-        elif operator == 'toggle':
-            if int(num) not in my_set:
-                my_set.add(num)
-            else:
-                my_set.discard(num)
+for _ in range(M):
+    oper = input().rstrip().split()
+    if oper[0] == "add" and S[int(oper[1])] == 0:
+        S[int(oper[1])] = 1
+    if oper[0] == "remove" and S[int(oper[1])] == 1:
+        S[int(oper[1])] = 0
+    if oper[0] == "check":
+        print(1 if S[int(oper[1])] == 1 else 0)
+    if oper[0] == "toggle":
+        if S[int(oper[1])] == 0:
+            S[int(oper[1])] = 1
+        else:
+            S[int(oper[1])] = 0
+    if oper[0] == "all":
+        S = [1] * 21
+    if oper[0] == "empty":
+        S = [0] * 21
