@@ -1,23 +1,29 @@
 import sys
-
+input = sys.stdin.readline
 
 while True:
-    sentence = sys.stdin.readline().rstrip()
-    if sentence == ".":
-        break
-    check_string = ""
-    for s in sentence:
-        if s not in '()[]':
-            continue
-        else:
-            check_string += s
-    for _ in range(len(check_string)):
-        check_string = check_string.replace('()', '')
-        check_string = check_string.replace('[]', '')
-
-    if len(check_string) > 0:
-        print("no")
-    else:
-        print("yes")
-
-# 다시 생각해보기
+    my_input = input().rstrip()
+    if my_input == ".":
+        exit()
+    stack = []
+    flag = True
+    
+    for s in my_input:
+        if s == "(" or s == "[":
+            stack.append(s)
+        elif s == ")":
+            if stack and stack[-1] == "(":
+                stack.pop()
+            else:
+                flag = False
+                break
+        elif s == "]":
+            if stack and stack[-1] == "[":
+                stack.pop()
+            else:
+                flag = False
+                break
+    if stack:
+        flag = False
+    
+    print("yes" if flag else "no")
