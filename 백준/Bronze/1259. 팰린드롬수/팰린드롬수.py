@@ -1,8 +1,9 @@
 while True:
-    num = input()
-    if num == '0': break
-    num2 = num[::-1]
-    if num == num2:
-        print('yes')
+    my_num = input()
+    if my_num == "0":
+        exit()
+    
+    if my_num == my_num[::-1]:
+        print("yes")
     else:
-        print('no')
+        print("no")
