@@ -1,13 +1,17 @@
-T = int(input())
+import sys
+input = sys.stdin.readline
 
+T = int(input())
 for _ in range(T):
-    final = 0
-    score = 1
-    res = input()
-    for ans in res:
-        if ans == "O":
-            final += score
+    res = 0
+    score = 0
+    
+    my_input = input().rstrip()
+    for s in my_input:
+        if s == "O":
             score += 1
-        elif ans == 'X':
-            score = 1
-    print(final)
+        elif s == "X":
+            score = 0
+        res += score
+    
+    print(res)
