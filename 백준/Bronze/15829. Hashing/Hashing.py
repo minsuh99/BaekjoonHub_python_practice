@@ -1,8 +1,8 @@
-l = int(input())
-word = input()
+L = int(input())
+my_str = input()
 res = 0
 
-for i in range(len(word)):
-    res += (ord(word[i]) - ord('a') + 1) * (31 ** i)
+for i in range(L):
+    res += (ord(my_str[i]) - ord('a') + 1) * (31 ** i)
 
-print(res % 1234567891)
+print(res)
