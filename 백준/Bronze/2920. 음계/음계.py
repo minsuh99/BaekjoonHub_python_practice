@@ -1,6 +1,9 @@
-my_list = [int(i) for i in input().split()]
-asc_list = sorted(my_list)
-desc_list = sorted(my_list, reverse=True)
+import sys
+input = sys.stdin.readline
+my_list = list(map(int, input().rstrip().split()))
+
+asc_list = [int(i) for i in range(1, 9)]
+desc_list = [int(i) for i in range(8, 0, -1)]
 
 if my_list == asc_list:
     print("ascending")
