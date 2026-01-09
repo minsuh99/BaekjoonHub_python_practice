@@ -1,6 +1,6 @@
-n = int(input())
-shirt= [int(i) for i in input().split()]
-t, p = map(int, input().split())
+N = int(input())
+s, m, l, xl, xxl, xxxl = map(int, input().split())
+T, P = map(int, input().split())
 
-print(sum([(i//t)+1 if i%t != 0 else i//t for i in shirt]))
-print(n//p, n%p)
+print(sum([i // T if i % T == 0 else i // T + 1 for i in [s, m, l, xl, xxl, xxxl]]))
+print(N // P, N % P)
