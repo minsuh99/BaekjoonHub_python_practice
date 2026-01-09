@@ -1,21 +1,27 @@
+from collections import deque
 import sys
-import math
+input = sys.stdin.readline
 
-n = int(sys.stdin.readline())
+def round(num):
+    if 0 <= num - int(num) < 0.5:
+        return int(num)
+    elif num - int(num) >= 0.5:
+        return int(num) + 1
+
+n = int(input())
 if n == 0:
     print(0)
-else:
-    level = []
+    exit()
+level = deque()
 
-    for _ in range(n):
-        level.append(int(sys.stdin.readline()))
+for _ in range(n):
+    level.append(int(input()))
+level = deque(sorted(level))
 
-    level.sort()
-    cut = int(math.floor(n * 0.15 + 0.5))
-    level = level[cut:(len(level)-cut)]
+del_num = round(n * 0.15)
 
-    print(math.floor(sum(level) / len(level) + 0.5))
+for _ in range(del_num):
+    level.popleft()
+    level.pop()
 
-# 파이썬의 round()가 오사오입 방식인지 처음 알았다..
-# math.floor(x + 0.5)를 이용하면 제대로 반올림이 된다.. 
-# 대신 정수 범위일때만
+print(round(sum(level) / len(level)))
