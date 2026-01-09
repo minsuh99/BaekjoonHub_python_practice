@@ -1,22 +1,17 @@
-first = input()
-second = input()
-third = input()
+for i in range(3, 0, -1):
+    temp = input()
+    if temp.isdigit():
+        check_num = int(temp) + i
 
-my_list = [first, second, third]
-res = 0
-
-for word in my_list:
-    if word.isdigit():
-        res = int(word) + 3 - my_list.index(word)
+        if check_num % 3 == 0:
+            if check_num % 5 == 0:
+                print("FizzBuzz")
+            else:
+                print("Fizz")
+        else:
+            if check_num % 5 == 0:
+                print("Buzz")
+            else:
+                print(check_num)
+        
         break
-
-if res % 3 == 0:
-    if res % 5 == 0:
-        print("FizzBuzz")
-    else:
-        print("Fizz")
-else:
-    if res % 5 == 0:
-        print("Buzz")
-    else:
-        print(res)
