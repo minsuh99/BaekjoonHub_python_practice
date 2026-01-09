@@ -1,25 +1,21 @@
+from collections import Counter
+import math
 import sys
+input = sys.stdin.readline
 
-n = int(sys.stdin.readline())
-num_list=[]
-cnt_dict = {}
-max_count_list = []
+N = int(input())
+num_list = []
 
-for _ in range(n):
-    num_list.append(int(sys.stdin.readline()))
+for _ in range(N):
+    num_list.append(int(input()))
+
 num_list.sort()
+num_dict = Counter(num_list)
+most_frec = [k for k in num_dict.keys() if num_dict[k] == max(num_dict.values())]
+if len(most_frec) >= 2:
+    most_frec.sort()
 
-for i in num_list:
-    if i in cnt_dict:
-        cnt_dict[i] += 1
-    else:
-        cnt_dict[i] = 1
-
-for i in cnt_dict:
-    if cnt_dict[i] == max(cnt_dict.values()):
-        max_count_list.append(i)
-
-print(int(round(sum(num_list) / len(num_list), 0)))
-print(num_list[(len(num_list)-1) // 2])
-print(max_count_list[0] if len(max_count_list) == 1 else max_count_list[1])
-print(max(num_list)-min(num_list))
+print(math.floor((sum(num_list) / len(num_list)) + 0.5))
+print(num_list[int(N // 2)])
+print(most_frec[1] if len(most_frec) >= 2 else most_frec[0])
+print(num_list[-1] - num_list[0])
