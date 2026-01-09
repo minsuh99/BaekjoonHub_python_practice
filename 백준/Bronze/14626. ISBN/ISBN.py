@@ -1,20 +1,23 @@
 isbn = input()
-answer = 0
-target_idx = 0
+check_idx = 0
+m = int(isbn[-1])
+temp = 0
 
-for i in range(len(isbn)-1):
+for i in range(len(isbn) - 1):
     if isbn[i] == "*":
-        target_idx = i
-        pass
+        check_idx = i
+    elif i % 2 == 0:
+        temp += int(isbn[i])
     elif i % 2 != 0:
-        answer += (3 * int(isbn[i]))
+        temp += int(isbn[i]) * 3
+
+flag = (check_idx % 2 == 0)
+for num in range(10):
+    if flag:
+        if (temp + num) % 10 == (10 - m) % 10:
+            print(num)
+            exit()
     else:
-        answer += int(isbn[i])
-
-target = int(isbn[-1])
-
-for i in range(10):
-    temp = i if target_idx % 2 == 0 else 3 * i
-    if (10 - (answer + temp) % 10) % 10 == target:
-        print(i)
-        break
+        if (temp + num * 3) % 10 == (10 - m) % 10:
+            print(num)
+            exit()
