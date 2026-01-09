@@ -1,22 +1,15 @@
+from collections import Counter
 import sys
+input = sys.stdin.readline
 
-n = int(sys.stdin.readline())
-card_list = [int(i) for i in sys.stdin.readline().split()]
+N = int(input())
+my_dict = Counter([int(i) for i in input().split()])
+M = int(input())
+check_num = [int(i) for i in input().split()]
+res = [0 for _ in range(M)]
 
-m = int(sys.stdin.readline())
-num_list = [int(i) for i in sys.stdin.readline().split()]
+for i in range(M):
+    if check_num[i] in my_dict.keys():
+        res[i] = my_dict[check_num[i]]
 
-res_dict = {}
-
-for i in card_list:
-    if i in res_dict:
-        res_dict[i] += 1
-    else:
-        res_dict[i] = 1
-
-for num in num_list:
-    print(res_dict[num] if num in res_dict else 0, end = " ")
-
-# 딕셔너리가 시간 줄이는데 좀 도움이 되나봄
-# 리스트의 count 메소드는 O(n)이기에 리스트 요소마다 반복문을 실행하면
-# O(n^2)이라 시간 오래 걸리나봄
+print(*res)
