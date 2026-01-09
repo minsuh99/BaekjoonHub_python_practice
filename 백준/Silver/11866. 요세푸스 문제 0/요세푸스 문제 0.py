@@ -1,16 +1,13 @@
-n, k = map(int, input().split())
-my_list = [int(i) for i in range(1, n+1)]
-res_list = []
-i = k-1
+from collections import deque
+import sys
+input = sys.stdin.readline
 
-while True:
-    res_list.append(str(my_list[i]))
-    my_list.remove(my_list[i])
-    
-    if len(my_list) == 0:
-        break
-    
-    i += k - 1
-    i %= len(my_list)
+N, K = map(int, input().split())
+my_queue = deque([int(i) for i in range(1, N + 1)])
+res = []
 
-print(f'<{", ".join(res_list)}>')
+while my_queue:
+    my_queue.rotate(-(K - 1))
+    res.append(my_queue.popleft())
+
+print(f"<{", ".join([str(i) for i in res])}>")
