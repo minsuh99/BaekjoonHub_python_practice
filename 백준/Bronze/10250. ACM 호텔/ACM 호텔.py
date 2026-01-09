@@ -1,4 +1,10 @@
+import sys
+input = sys.stdin.readline
+
 T = int(input())
+
 for _ in range(T):
-    h, w, n = map(int, input().split())
-    print(f"{n%h if n%h!=0 else h}{n//h+1 if n%h != 0 else n//h:02d}")
+    H, W, N = map(int, input().split())
+    room_number = N // H if N % H == 0 else N // H + 1
+    floor = H if N % H == 0 else N % H
+    print(f"{floor}{room_number:02d}")
