@@ -1,27 +1,25 @@
-import sys
 from collections import deque
+import sys
+input = sys.stdin.readline
 
-T = int(sys.stdin.readline())
+T = int(input())
 
 for _ in range(T):
-    n, m = map(int, sys.stdin.readline().split())
-    importance = [int(i) for i in sys.stdin.readline().split()]
+    N, M = map(int, input().split())
+    printer_queue = deque([(int(num), int(i)) for i, num in enumerate(input().split())])
     
-    my_list = deque([(i, importance[i]) for i in range(n)])
-    res_list = []
-    importance.sort()
+    target = max(printer_queue)[0]
+    cnt = 1
     
-    next_importance = importance[-1]
     while True:
-        if my_list[0][1] != next_importance:
-            my_list.rotate(-1)
-        else:
-            res_list.append(my_list.popleft())
-            if len(my_list) != 0:
-                importance.pop()
-                next_importance = importance[-1]
-            else:
+        if printer_queue[0][0] < target:
+            printer_queue.rotate(-1)
+            continue
+        elif printer_queue[0][0] == target:
+            if printer_queue[0][1] == M:
+                print(cnt)
                 break
-    
-    res_list = [i[0] for i in res_list]
-    print(res_list.index(m) + 1)
+            else:
+                printer_queue.popleft()
+                target = max(printer_queue)[0]
+                cnt += 1
