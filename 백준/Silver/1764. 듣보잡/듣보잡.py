@@ -1,15 +1,17 @@
 import sys
-n, m = map(int, sys.stdin.readline().split())
-non_listen = set()
-non_watch = set()
+input = sys.stdin.readline
 
-for _ in range(n):
-    non_listen.add(sys.stdin.readline().strip())
+N, M = map(int, input().split())
+not_listen = set()
+not_seen = set()
 
-for _ in range(m):
-    non_watch.add(sys.stdin.readline().strip())
+for _ in range(N):
+    not_listen.add(input().rstrip())
 
-res_list = sorted(list(non_listen.intersection(non_watch)))
-print(len(res_list))
-for name in res_list:
+for _ in range(M):
+    not_seen.add(input().rstrip())
+
+res = sorted(list(not_listen & not_seen))
+print(len(res))
+for name in res:
     print(name)
