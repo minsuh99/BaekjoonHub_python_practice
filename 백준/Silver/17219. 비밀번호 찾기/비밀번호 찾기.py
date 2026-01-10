@@ -1,12 +1,13 @@
 import sys
+input = sys.stdin.readline
 
-n, m = map(int, input().split())
+N, M = map(int, input().split())
+pass_dict = {}
 
-password_dict = dict()
+for _ in range(N):
+    site, password = map(str, input().rstrip().split())
+    pass_dict[site] = password
 
-for _ in range(n):
-    site, password = map(str, sys.stdin.readline().split())
-    password_dict[site] = password
-
-for _ in range(m):
-    print(password_dict[str(sys.stdin.readline().strip())])
+for _ in range(M):
+    find_site = input().rstrip()
+    print(pass_dict[find_site])
