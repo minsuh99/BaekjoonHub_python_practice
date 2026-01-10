@@ -1,22 +1,26 @@
 import sys
+input = sys.stdin.readline
 
-n = int(sys.stdin.readline())
+N = int(input())
+stairs = []
+dp = [[0 for _ in range(3)] for _ in range(N)]
+# dp[_][1] = 해당 계단까지 1번 연속으로 밟았을 때,
+# dp[_][2] = 해당 계단까지 2번 연속으로 밟았을 때,
 
-my_list = [0 for _ in range(n + 1)]
-score = [int(sys.stdin.readline()) for _ in range(n)]
+for _ in range(N):
+    stairs.append(int(input()))
 
-if n == 1:
-    print(score[0])
-    sys.exit()
-if n == 2:
-    print(score[0] + score[1])
-    sys.exit()
+if N == 1:
+    print(stairs[0])
+    exit()
 
-my_list[0] = score[0]
-my_list[1] = score[0] + score[1]
-my_list[2] = max(my_list[0] + score[2], score[1] + score[2])
+dp[0][1] = stairs[0]
+dp[1][1] = stairs[1]
+dp[1][2] = stairs[0] + stairs[1]
 
-for i in range(3, n):
-    my_list[i] = max(my_list[i-2] + score[i], my_list[i-3] + score[i-1] + score[i])
 
-print(my_list[n-1])
+for i in range(2, N):
+    dp[i][1] = max(dp[i - 2][1], dp[i - 2][2]) + stairs[i]
+    dp[i][2] = dp[i - 1][1] + stairs[i]
+
+print(max(dp[-1]))
