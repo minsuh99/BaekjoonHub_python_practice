@@ -2,15 +2,12 @@ import sys
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
-A = [int(i) for i in input().split()]
-S = [0 for _ in range(N)]
-S[0] = A[0]
+num_list = [0] + list(map(int, input().split()))
+partial_sum = [0 for _ in range(N + 1)]
 
-for i in range(1, N):
-    S[i] = S[i-1] + A[i]
-    
-S = [0] + S
+for k in range(1, N + 1):
+    partial_sum[k] = partial_sum[k - 1] + num_list[k]
 
 for _ in range(M):
     i, j = map(int, input().split())
-    print(S[j] - S[i-1])
+    print(partial_sum[j] - partial_sum[i - 1])
