@@ -2,21 +2,23 @@ from collections import defaultdict
 import sys
 input = sys.stdin.readline
 
-n = int(input())
-for _ in range(n):
-    my_dict = defaultdict(list)
-    answer = 1
+T = int(input())
+for _ in range(T):
+    N = int(input())
+    if N == 0:
+        print(0)
+        continue
     
-    t = int(input())
-    for _ in range(t):
-        wear, kind = map(str, input().split())
-        if kind not in my_dict:
-            my_dict[kind] = [wear]
+    cloth_dict = defaultdict(list)
+    res = 1
+    for _ in range(N):
+        cloth, kind = map(str, input().rstrip().split())
+        if cloth_dict[kind]:
+            cloth_dict[kind].append(cloth)
         else:
-            my_dict[kind].append(wear)
-        
-    for key in my_dict.keys():
-        answer *= len(my_dict[key]) + 1
-
-    answer -= 1
-    print(answer)
+            cloth_dict[kind] = [cloth]
+    
+    for key in cloth_dict.keys():
+        res *= len(cloth_dict[key]) + 1
+    
+    print(res - 1)
