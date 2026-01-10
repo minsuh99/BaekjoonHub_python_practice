@@ -1,16 +1,17 @@
 import sys
-pok_dict = dict()
-pok_dict2 = dict()
-n, m = map(int, sys.stdin.readline().split())
+input = sys.stdin.readline
 
-for i in range(1, n+1):
-    name = str(sys.stdin.readline().strip())
-    pok_dict[i] = name
-    pok_dict2[name] = i
+N, M = map(int, input().split())
+my_dict = {}
 
-for _ in range(m):
-    check = sys.stdin.readline().strip()
-    if check.isdigit():
-        print(pok_dict[int(check)])
+for i in range(1, N + 1):
+    name = input().rstrip()
+    my_dict[i] = name
+    my_dict[name] = i
+
+for _ in range(M):
+    query = input().rstrip()
+    if query.isdigit():
+        print(my_dict[int(query)])
     else:
-        print(pok_dict2[check])
+        print(my_dict[query])
