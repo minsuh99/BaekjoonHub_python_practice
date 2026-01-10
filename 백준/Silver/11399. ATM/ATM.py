@@ -1,8 +1,11 @@
-n = int(input())
-time_list = sorted([int(i) for i in input().split()])
-res = 0
+N = int(input())
+num_list = list(map(int, input().split()))
+res_list = [0 for _ in range(N)]
 
-for i in range(len(time_list)):
-    res += sum(time_list[:i+1])
+num_list.sort()
+res_list[0] = num_list[0]
 
-print(res)
+for i in range(1, N):
+    res_list[i] = res_list[i - 1] + num_list[i]
+
+print(sum(res_list))
