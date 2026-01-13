@@ -1,14 +1,15 @@
 import sys
 input = sys.stdin.readline
 
-my_str = input().rstrip().split("-")
-res = 0
+equation = input().rstrip()
+num_list = equation.split('-')
+new_num = []
+for nums in num_list:
+    temp = list(map(int, nums.split('+')))
+    new_num.append(sum(temp))
 
-for i in range(len(my_str)):
-    my_str[i] = [int(j) for j in my_str[i].split("+")]
-    if i == 0:
-        res += sum(my_str[i])
-    else:
-        res -= sum(my_str[i])
+res = new_num[0]
+for num in new_num[1:]:
+    res -= num
 
 print(res)
