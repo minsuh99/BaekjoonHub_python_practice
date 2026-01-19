@@ -1,25 +1,32 @@
 import sys
-sys.setrecursionlimit(10 ** 6)
 input = sys.stdin.readline
 
 N = int(input())
+row = [-1 for _ in range(N)]
 res = 0
-cols = [False for _ in range(N)]
-sum_diag = [False for _ in range(2*N + 1)]
-diff_diag = [False for _ in range(2*N + 1)]
 
-def backtrack(row):
+def backtracking(r):
     global res
-    if row == N:
+    if r == N:
         res += 1
         return
-    
-    for col in range(N):
-        if cols[col] == False and sum_diag[row+col] == False and diff_diag[row-col+N-1] == False:
-            cols[col] = sum_diag[row+col] = diff_diag[row-col+N-1] = True
-            backtrack(row + 1)
-            cols[col] = sum_diag[row+col] = diff_diag[row-col+N-1] = False
-            
 
-backtrack(0)
+    for c in range(N):
+        flag = True
+        for prev in range(r):
+            if row[prev] == c:
+                flag = False
+                break
+            if abs(row[prev] - c) == r - prev:
+                flag = False
+                break
+
+        if not flag:
+            continue
+
+        row[r] = c
+        backtracking(r + 1)
+        row[r] = -1
+
+backtracking(0)
 print(res)
