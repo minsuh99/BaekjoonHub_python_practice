@@ -1,21 +1,22 @@
 import sys
+sys.setrecursionlimit(10 ** 6)
+input = sys.stdin.readline
 
-n, s = map(int, sys.stdin.readline().split())
-my_list = [int(i) for i in sys.stdin.readline().split()]
+N, S = map(int, input().split())
+num_list = list(map(int, input().split()))
+num_list.sort()
 res = 0
-def backtrack(k, start, comb_list):
-    global res
-    if len(comb_list) == k:
-        if sum(comb_list) == s:
-            res += 1
-            return
-    
-    for i in range(start, n):
-        comb_list.append(my_list[i])
-        backtrack(k, i + 1, comb_list)
-        comb_list.pop()
-    
-for k in range(1, n+1):
-    backtrack(k, 0, [])
 
+
+def backtrack(start, res_list):
+    global res
+    if res_list and sum(res_list) == S:
+        res += 1
+
+    for i in range(start, N):
+        res_list.append(num_list[i])
+        backtrack(i + 1, res_list)
+        res_list.pop()
+
+backtrack(0, [])
 print(res)
