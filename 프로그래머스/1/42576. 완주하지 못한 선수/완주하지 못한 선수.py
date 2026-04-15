@@ -1,17 +1,18 @@
+from collections import defaultdict
+
 def solution(participant, completion):
     answer = ''
+    my_dict = defaultdict(int)
     
-    participant_dict = {}
-    
-    for player in participant:
-        if player not in participant_dict:
-            participant_dict[player] = 1
+    for p in participant:
+        if p not in my_dict:
+            my_dict[p] = 1
         else:
-            participant_dict[player] += 1
+            my_dict[p] += 1
     
-    for player in completion:
-        participant_dict[player] -= 1
+    for c in completion:
+        my_dict[c] -= 1
     
-    final_idx = list(participant_dict.values()).index(1)
-    answer = list(participant_dict.keys())[final_idx]
-    return answer
+    for key in my_dict.keys():
+        if my_dict[key] == 1:
+            return key
