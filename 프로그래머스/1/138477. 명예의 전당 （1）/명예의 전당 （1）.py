@@ -1,18 +1,15 @@
 def solution(k, score):
     answer = []
     hof = []
+
     for s in score:
-        if not hof:
+        if len(hof) < k:
             hof.append(s)
-            answer.append(s)
         else:
-            hof.sort()
-            if len(hof) == k:
-                if s > min(hof):
-                    hof.append(s)
-                    hof.remove(min(hof))
-            else:
-                hof.append(s)
-            answer.append(min(hof))
+            m = min(hof)
+            if s > m:
+                hof[hof.index(m)] = s
+
+        answer.append(min(hof))
 
     return answer
