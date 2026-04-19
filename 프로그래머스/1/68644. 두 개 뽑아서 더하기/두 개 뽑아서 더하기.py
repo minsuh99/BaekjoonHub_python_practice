@@ -1,10 +1,12 @@
+from itertools import combinations
+
+
 def solution(numbers):
     answer = []
-    for i in range(len(numbers)-1):
-        for j in range(i+1, len(numbers)):
-            if numbers[i] + numbers[j] in answer:
-                pass
-            else:
-                answer.append(numbers[i] + numbers[j])
-    answer.sort()
+    
+    for comb in list(combinations(numbers, 2)):
+        answer.append(sum(comb))
+    
+    answer = sorted(list(set(answer)))
+    
     return answer
