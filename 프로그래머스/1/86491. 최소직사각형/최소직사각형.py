@@ -1,10 +1,9 @@
 def solution(sizes):
     answer = 0
-    width, height = 0, 0
-    
+    max_w, max_h = 0, 0
     for size in sizes:
-        width = max(width, max(size[0], size[1]))
-        height = max(height, min(size[0], size[1]))
+        size[0], size[1] = max(size[0], size[1]), min(size[0], size[1])
+        max_w, max_h = max(max_w, size[0]), max(max_h, size[1])
     
-    answer = width * height
+    answer = max_w * max_h
     return answer
