@@ -1,5 +1,4 @@
 def solution(s):
-    answer = ''
     my_dict = {
         'zero':'0',
         'one':'1',
@@ -12,14 +11,8 @@ def solution(s):
         'eight':'8',
         'nine':'9'
     }
-    temp = ''
-    for alpha in s:
-        if alpha.isdigit():
-            answer += alpha
-        else:
-            temp += alpha
-            if temp in my_dict:
-                answer += my_dict[temp]
-                temp = ''
     
-    return int(answer)
+    for key, value in my_dict.items():
+        s = s.replace(key, value)
+        
+    return int(s)
