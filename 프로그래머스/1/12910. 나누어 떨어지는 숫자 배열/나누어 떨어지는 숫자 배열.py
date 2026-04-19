@@ -1,10 +1,5 @@
 def solution(arr, divisor):
-    answer = []
-    for num in arr:
-        if num % divisor == 0:
-            answer.append(num)
-    answer.sort()
+    answer = [i for i in sorted(arr) if i % divisor == 0]
     if not answer:
-        answer.append(-1)
-    
+        answer = [-1]
     return answer
