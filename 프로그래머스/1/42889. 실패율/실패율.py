@@ -1,18 +1,16 @@
+from collections import Counter
+
+
 def solution(N, stages):
-    answer = []
-    challenge_people = len(stages)
-    fail_ratio = []
+    fail_ratio = [[i + 1, 0] for i in range(N)]
+    stage_count = Counter(stages)
+    cur_people = len(stages)
     
-    for stage in range(1, N+1):
-        not_clear_people = stages.count(stage)
-        pass_people = challenge_people - not_clear_people
-        
-        if challenge_people != 0:
-            fail_ratio.append((stage, not_clear_people / challenge_people))
-        else:
-            fail_ratio.append((stage, 0))
-        challenge_people -= not_clear_people
+    for i in range(N):
+        if i + 1 in stage_count:
+            fail_ratio[i][1] = stage_count[i + 1] / cur_people
+            cur_people -= stage_count[i + 1]
     
-    temp = [c[0] for c in sorted(fail_ratio, key=lambda x: (-x[1], x[0]))]
-                
-    return temp
+    fail_ratio.sort(key=lambda x:(-x[1], x[0]))
+    answer = [k[0] for k in fail_ratio]
+    return answer
