@@ -8,5 +8,5 @@ def solution(a, b):
         cur_day += day_of_month[i]
     cur_day += b - 1
     answer = weekday[(cur_weekday + cur_day) % 7]
-    print(cur_day)
+
     return answer
