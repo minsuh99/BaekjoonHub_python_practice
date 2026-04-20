@@ -1,27 +1,20 @@
 def solution(answers):
-    answer = []
-    cnt1 = 0
-    cnt2 = 0
-    cnt3 = 0
+    res = []
+    num1 = [1, 2, 3, 4, 5]
+    num2 = [2, 1, 2, 3, 2, 4, 2, 5]
+    num3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    correct = [0, 0, 0, 0]
     
-    ans1 = [1, 2, 3, 4, 5]
-    ans2 = [2, 1, 2, 3, 2, 4, 2, 5]
-    ans3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    for i, answer in enumerate(answers):
+        if num1[i % 5] == answer:
+            correct[1] += 1
+        if num2[i % 8] == answer:
+            correct[2] += 1
+        if num3[i % 10] == answer:
+            correct[3] += 1
     
-    for i in range(len(answers)):
-        if answers[i] == ans1[i%len(ans1)]:
-            cnt1 += 1
-        if answers[i] == ans2[i%len(ans2)]:
-            cnt2 += 1
-        if answers[i] == ans3[i%len(ans3)]:
-            cnt3 += 1
-    
-    max_cnt = max(max(cnt1, cnt2), cnt3)
-    if cnt1 == max_cnt:
-        answer.append(1)
-    if cnt2 == max_cnt:
-        answer.append(2)
-    if cnt3 == max_cnt:
-        answer.append(3)
-    
-    return answer
+    max_cor = max(correct)
+    for i in range(1, 4):
+        if correct[i] == max_cor:
+            res.append(i)
+    return res
