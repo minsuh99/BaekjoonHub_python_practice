@@ -3,7 +3,7 @@ from collections import deque
 
 def solution(board, moves):
     answer = 0
-    new_board = [deque([k for k in list(i) if k > 0]) for i in (list(zip(*board)))]
+    new_board = [deque([k for k in i if k > 0]) for i in zip(*board)]
     stack = []
     
     for move in moves:
