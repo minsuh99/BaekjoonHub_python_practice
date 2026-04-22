@@ -1,15 +1,15 @@
 from collections import Counter
 
+
 def solution(k, tangerine):
     answer = 0
+    my_dict = Counter(tangerine)
+    num_kind = sorted([v for _, v in my_dict.items()], reverse=True)
+    cur_k = 0
     
-    my_list = sorted(dict(Counter(tangerine)).items(), key=lambda x:-x[1])
-    # [1, 3, 2, 5, 4, 5, 2, 3] -> [(3, 2), (2, 2), (5, 2), (1, 1), (4, 1)]
-    
-    temp = 0    
-    for num in my_list:
-        temp += num[1]
+    for i in range(len(num_kind)):
         answer += 1
-        if temp >= k:
+        cur_k += num_kind[i]
+        if cur_k >= k:
             break
     return answer
