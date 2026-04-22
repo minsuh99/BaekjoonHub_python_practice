@@ -1,5 +1,4 @@
 def solution(s):
-    answer = ''
-    my_list = list(map(int, s.split()))
-    answer = str(min(my_list)) + ' ' + str(max(my_list))
+    my_list = [int(i) for i in s.split()]
+    answer = f"{min(my_list)} {max(my_list)}"
     return answer
