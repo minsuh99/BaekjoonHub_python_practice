@@ -1,15 +1,10 @@
 def solution(brown, yellow):
     answer = []
+    area = brown + yellow
     
-    target = brown + yellow
-    divisor = []
-    
-    for i in range(1, int(target ** (0.5))+1):
-        if target % i == 0:
-            divisor.append((target // i, i))
-    
-    for tup in divisor[::-1]:
-        if (tup[0] - 2) * (tup[1] - 2) == yellow:
-            return [tup[0], tup[1]]
-    
+    for i in range(2, int(area ** 0.5) + 1):
+        if area % i == 0:
+            if (area // i - 2) * (i - 2) == yellow:
+                answer = [area // i, i]
+                break
     return answer
