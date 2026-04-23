@@ -1,25 +1,15 @@
+from collections import Counter
+
+
 def solution(want, number, discount):
     answer = 0
+    if len(set(want) & set(discount)) == 0:
+        return answer
     
-    want_dict = {}
-    
-    for product in want:
-        if product not in discount:
-            return 0
-    
-    for product, num in zip(want, number):
-        want_dict[product] = num
+    want_dict = {k:v for k, v in zip(want, number)}
     
     for i in range(len(discount) - 9):
-        check_products = discount[i:i+10]
-        check_dict = {}
-        
-        for product in check_products:
-            if product not in check_dict:
-                check_dict[product] = 1
-            else:
-                check_dict[product] += 1
-    
-        answer += (want_dict == check_dict)
+        if want_dict == dict(Counter(discount[i:i+10])):
+            answer += 1
     
     return answer
