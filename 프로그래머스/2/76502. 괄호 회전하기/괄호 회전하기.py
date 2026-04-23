@@ -1,22 +1,39 @@
-def check_vaild_str(s: str):
+from collections import deque
+
+
+def check_s(sentence):
     stack = []
-    mapping_table = {
-        ')': '(',
-        '}': '{',
-        ']': '[',
-    }
-    for char in s:
-        if char not in mapping_table:
-            stack.append(char)
-        elif not stack or mapping_table[char] != stack.pop():
-            return False
-    return len(stack) == 0
-
-
+    
+    for s in sentence:
+        if s in ["(", "[", "{"]:
+            stack.append(s)
+        elif s == ")":
+            if stack and stack[-1] == "(":
+                stack.pop()
+            else:
+                return False
+        elif s == "]":
+            if stack and stack[-1] == "[":
+                stack.pop()
+            else:
+                return False
+        elif s == "}":
+            if stack and stack[-1] == "{":
+                stack.pop()
+            else:
+                return False
+    if stack:
+        return False
+    
+    return True
 
 def solution(s):
     answer = 0
-    for x in range(len(s)):
-        check_s = [s[(i + x) % len(s)] for i in range(len(s))]
-        answer += check_vaild_str(check_s)
+    s = deque(s)
+    
+    for _ in range(len(s)):
+        s.rotate(1)
+        answer += check_s(s)
+    
+    
     return answer
