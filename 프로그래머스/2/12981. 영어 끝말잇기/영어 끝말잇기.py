@@ -1,9 +1,14 @@
 def solution(n, words):
-    answer = [0, 0]
+    player_num = 0
+    order_num = 0
+    stack = []
     
-    for i in range(1, len(words)):
-        if (words[i][0] != words[i - 1][-1]) or (words[i] in words[:i]):
-            answer = [(i % n) + 1, (i // n) + 1]
+    for i, word in enumerate(words):
+        if (stack and stack[-1][-1] != word[0]) or word in stack:
+            player_num = i % n + 1
+            order_num = i // n + 1
             break
-
-    return answer
+        else:
+            stack.append(word)
+            
+    return [player_num, order_num]
