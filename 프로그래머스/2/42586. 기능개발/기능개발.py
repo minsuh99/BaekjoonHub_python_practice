@@ -1,19 +1,20 @@
+from collections import deque
+
+
 def solution(progresses, speeds):
     answer = []
+    progress_queue = deque(progresses)
+    speed_queue = deque(speeds)
     stack = []
-    work_days = [0 for _ in range(len(progresses))]
-    for i in range(len(progresses)):
-        if (100 - progresses[i]) % speeds[i] == 0:
-            work_days[i] = (100 - progresses[i]) // speeds[i]
-        else:
-            work_days[i] = (100 - progresses[i]) // speeds[i] + 1
     
-    for day in work_days:
-        if not stack or max(stack) >= day:
-            stack.append(day)
-        else:
+    while progress_queue:
+        for i in range(len(progress_queue)):
+            progress_queue[i] += speed_queue[i]
+        if progress_queue[0] >= 100:
+            while progress_queue and progress_queue[0] >= 100:
+                stack.append(progress_queue.popleft())
+                speed_queue.popleft()
             answer.append(len(stack))
-            stack.clear()
-            stack.append(day)
-    answer.append(len(stack))
+            stack = []
+    
     return answer
