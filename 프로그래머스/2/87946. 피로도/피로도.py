@@ -1,17 +1,18 @@
 def solution(k, dungeons):
-    answer = -1
-    visited = [False for _ in range(len(dungeons))]
-    
-    def backtrack(cur_k, count):
+    answer = 0
+    visited = [False] * len(dungeons)
+
+    def dfs(cur_k, count):
         nonlocal answer
         answer = max(answer, count)
-        
+
         for i in range(len(dungeons)):
-            if not visited[i]:
-                min_k, minus_k = dungeons[i]
-                if cur_k >= min_k:
-                    visited[i] = True
-                    backtrack(cur_k - minus_k, count + 1)
-                    visited[i] = False
-    backtrack(k, 0)
+            need_k, use_k = dungeons[i]
+
+            if not visited[i] and cur_k >= need_k:
+                visited[i] = True
+                dfs(cur_k - use_k, count + 1)
+                visited[i] = False
+
+    dfs(k, 0)
     return answer
