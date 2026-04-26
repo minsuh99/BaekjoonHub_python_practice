@@ -1,28 +1,25 @@
-import sys
-sys.setrecursionlimit(10 ** 5)
-
-answer = 0
-flag = False
-
 def solution(word):
-    
-    def backtrack(string, word):
-        global answer
-        global flag
-        if string == word:
-            flag = True
-            
-        if flag or len(string) == 5:
-            return 
+    answer = 0
+    found = False
 
-        for char in ["A", "E", "I", "O", "U"]:
-            string += char
+    def dfs(cur_s):
+        nonlocal answer, found
+
+        if found:
+            return
+        
+        if cur_s:
             answer += 1
-            backtrack(string, word)
-            if flag:
-                break
-            string = string[:-1]
-    
-    backtrack("", word)
-    
+
+        if cur_s == word:
+            found = True
+            return
+
+        if len(cur_s) == 5:
+            return
+
+        for vowel in ["A", "E", "I", "O", "U"]:
+            dfs(cur_s + vowel)
+
+    dfs("")
     return answer
