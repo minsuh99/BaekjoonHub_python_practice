@@ -1,32 +1,25 @@
-# Union-Find 스스로 짜보기
-def find(parents, x):
-    if parents[x] == x:
-        return x
-    parents[x] = find(parents, parents[x])
-    return parents[x]
+from collections import deque
 
-def union(parents, x, y):
-    x, y = min(x, y), max(x, y)
-    root1 = find(parents, x)
-    root2 = find(parents, y)
-    
-    parents[root2] = root1
 
 def solution(n, computers):
-    computers_edge = []
-    for i in range(len(computers)):
-        for j in range(i, len(computers[0])):
-            if i == j:
-                continue
-            if computers[i][j] == 1:
-                computers_edge.append([i, j])
-                
-    parents = [i for i in range(n)]
+    answer = 0
+    visited = [False for _ in range(n)]
     
-    for edge in computers_edge:
-        if find(parents, edge[0]) == find(parents, edge[1]):
-            continue
-        else:
-            union(parents, edge[0], edge[1])
+    def bfs(node):
+        nonlocal visited, n, computers
+        queue = deque([node])
+        
+        while queue:
+            next_node = queue.popleft()
+            visited[next_node] = True
+            for i in range(n):
+                if not visited[i]:
+                    if computers[next_node][i] == 1 and next_node != i:
+                        queue.append(i)
+
+    for node in range(n):
+        if visited[node] == False:
+            bfs(node)
+            answer += 1
     
-    return len(set(list([find(parents, i) for i in range(n)])))
+    return answer
