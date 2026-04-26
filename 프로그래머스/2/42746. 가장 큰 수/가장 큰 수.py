@@ -1,6 +1,4 @@
 def solution(numbers):
-    answer = ''
-    numbers = [str(i) for i in numbers]
-    numbers.sort(key=lambda x:x*4, reverse=True)
-    answer = "".join(numbers) if sum([int(i) for i in numbers]) != 0 else '0'
-    return answer
+    my_list = sorted([str(i) for i in numbers], key = lambda x: x * 4, reverse=True)
+
+    return "".join(my_list) if my_list[0] != "0" else "0"
