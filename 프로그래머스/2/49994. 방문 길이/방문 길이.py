@@ -1,30 +1,14 @@
 def solution(dirs):
-    answer = 0
-    coor_list = []
-    footprints = []
+    answer = set()
+    dir_dict = dict({"U":(0, 1), "D":(0, -1), "L":(-1, 0), "R":(1, 0)})
+    cur_x, cur_y = 0, 0
     
-    cur_x = 0
-    cur_y = 0
-    next_x = 0
-    next_y = 0
-    
-    for dir in dirs:
-        cur_x = next_x
-        cur_y = next_y
-        if dir == 'U' and cur_y != 5:
-            next_y += 1
-        elif dir == 'D' and cur_y != -5:
-            next_y -= 1
-        elif dir == 'R' and cur_x != 5:
-            next_x += 1
-        elif dir == 'L' and cur_x != -5:
-            next_x -= 1
-        
-        footprint = [(cur_x, cur_y), (next_x, next_y)]
-        if len(list(set(footprint))) == 1:
-            continue
+    for d in dirs:
+        dx, dy = dir_dict[d]
+        if -5 <= cur_x + dx <= 5 and -5 <= cur_y + dy <= 5:
+            answer.add((cur_x, cur_y, cur_x + dx, cur_y + dy))
+            answer.add((cur_x + dx, cur_y + dy, cur_x, cur_y))
+            cur_x += dx
+            cur_y += dy
 
-        if footprint not in footprints and footprint[::-1] not in footprints:
-            footprints.append(footprint)
-    answer = len(footprints)
-    return answer
+    return len(answer) // 2
