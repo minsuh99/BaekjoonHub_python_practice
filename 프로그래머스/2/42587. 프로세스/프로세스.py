@@ -1,18 +1,17 @@
 from collections import deque
 
+
 def solution(priorities, location):
     answer = 0
-    new_prior = deque([(i, priority) for i, priority in enumerate(priorities)])
-    priorities.sort()
+    queue = deque([(i, priority) for i, priority in enumerate(priorities)])
+    sort_priorities = sorted(priorities)
 
-    while new_prior:
-        if new_prior[0][1] != priorities[-1]:
-            new_prior.rotate(-1)
-        else:
-            loc, _ = new_prior.popleft()
-            priorities.pop()
+    while queue:
+        if queue[0][1] == sort_priorities[-1]:
+            sort_priorities.pop()
+            idx, _ = queue.popleft()
             answer += 1
-            if loc == location:
-                break
-
-    return answer
+            if idx == location:
+                return answer
+        else:
+            queue.rotate(-1)
