@@ -1,14 +1,11 @@
 def solution(s):
     answer = []
-    temp = s[2:-2].split("},{")
-    temp = [i.split(",") for i in temp]
-    temp.sort(key=len)
-    temp = [set(i) for i in temp]
+    my_list = s[1:-1].split("},{")
+    my_list = [c.replace("{", "").replace("}", "") for c in my_list]
+    my_list = [set([int(i) for i in l.split(",")]) for l in my_list]
+    my_list.sort(key=lambda x:len(x))
     
-    for i in range(len(temp)):
-        value = list(temp[i] - set(answer))[0]
-        answer.append(value)
-    
-    answer = [int(i) for i in answer]
-    
+    for st in my_list:
+        for element in st - set(answer):
+            answer.append(element)
     return answer
