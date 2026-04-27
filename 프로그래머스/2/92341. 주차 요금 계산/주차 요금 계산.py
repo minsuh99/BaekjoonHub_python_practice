@@ -1,27 +1,36 @@
-import math
-from collections import defaultdict
-
 def solution(fees, records):
     answer = []
-    parking_fee = defaultdict(list)
+    res_dict = dict()
+    parking_dict = dict()
     
     for record in records:
-        time, car_num, status = record.split()
-        hour, minute = time.split(":")
-        cur_time = int(hour) * 60 + int(minute)
-        parking_fee[car_num].append(cur_time)
+        t, car, rec = record.split()
+        h, m = map(int, t.split(":"))
         
-    for car_num, time_record in sorted(parking_fee.items()):
-        temp = 0
-        if len(time_record) % 2 != 0:
-            time_record.append(60*23+59)
-        for j in range(0, len(time_record), 2):
-            temp += time_record[j + 1] - time_record[j]
+        if rec == "IN":
+            parking_dict[car] = h * 60 + m
         
-        if temp <= fees[0]:
+        elif rec == "OUT":
+            if car not in res_dict:
+                res_dict[car] = h * 60 + m - parking_dict[car]
+            else:
+                res_dict[car] += h * 60 + m - parking_dict[car]
+            
+            del parking_dict[car]
+
+    if parking_dict:
+        for car in parking_dict.keys():
+            if car not in res_dict:
+                res_dict[car] = 23 * 60 + 59 - parking_dict[car]
+            else:
+                res_dict[car] += 23 * 60 + 59 - parking_dict[car]
+    
+    res_dict = dict(sorted(res_dict.items(), key = lambda x:x[0]))
+    
+    for v in res_dict.values():
+        if v <= fees[0]:
             answer.append(fees[1])
         else:
-            answer.append(fees[1] + math.ceil((temp - fees[0]) / fees[2]) * fees[3])
-
-        
+            res = fees[1] + (((v - fees[0]) + fees[2] - 1) // fees[2]) * fees[3]
+            answer.append(res)
     return answer
