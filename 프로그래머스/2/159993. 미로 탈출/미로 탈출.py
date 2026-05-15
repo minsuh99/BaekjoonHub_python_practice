@@ -14,8 +14,7 @@ def solution(maps):
                 sr, sc = r, c
                 break
 
-    # S -> L
-    visited = [[False] * C for _ in range(R)]
+    visited = [[False for _ in range(C)] for _ in range(R)]
     visited[sr][sc] = True
 
     queue = deque([(sr, sc, 0)])
@@ -38,8 +37,7 @@ def solution(maps):
     if answer == -1:
         return -1
 
-    # L -> E
-    visited = [[False] * C for _ in range(R)]
+    visited = [[False for _ in range(C)] for _ in range(R)]
     visited[cur_r][cur_c] = True
 
     queue = deque([(cur_r, cur_c, 0)])
