@@ -26,7 +26,7 @@ def solution(n, edge):
             queue.append((next_node, d + 1))
     
     max_dist = max(dist[1:])
-    print(dist, max_dist)
+
     for i in range(1, n + 1):
         if dist[i] == max_dist:
             answer += 1
