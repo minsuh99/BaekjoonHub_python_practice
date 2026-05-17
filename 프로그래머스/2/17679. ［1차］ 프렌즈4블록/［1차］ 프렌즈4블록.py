@@ -1,34 +1,40 @@
 def solution(m, n, board):
     answer = 0
-    board = [list(i) for i in board]
-
+    board = [[board[row][col] for row in range(m)] for col in range(n)]
+    # 높이 m, 폭 n -> 높이 n, 폭 m으로 바꿈
+    
     while True:
-        bomb = set()
-        for i in range(m-1):
-            for j in range(n-1):
-                if board[i][j] != 0:
-                    if board[i][j] == board[i][j+1] == board[i+1][j] == board[i+1][j+1]:
-                        bomb.add((i, j))
-                        bomb.add((i, j+1))
-                        bomb.add((i+1, j))
-                        bomb.add((i+1, j+1))
+        change_rc = set() # 중복 있을수도 있으니 set으로
+        for r in range(n - 1):
+            for c in range(m - 1):
+                if board[r][c] != "":   # 빈칸이 아니라면
+                    # 2*2 형태로 같은게 4개 있다면
+                    if board[r][c] == board[r + 1][c] == board[r][c + 1] == board[r + 1][c + 1]: 
+                        # 빈칸으로 변해야 할 좌표들 추가
+                        change_rc.add((r, c))
+                        change_rc.add((r + 1, c))
+                        change_rc.add((r, c + 1))
+                        change_rc.add((r + 1, c + 1))
 
-        if len(bomb) == 0:
-            break
-
-        for i, j in bomb:
-            board[i][j] = 0
-
-        answer += len(bomb)
-        ## 다운,,
-
-        temp_board = list(zip(*board))
-        for i in range(len(temp_board)):
-            new_line = [i for i in temp_board[i] if i != 0]
-            new_line = [0 for _ in range(len(temp_board[i]) - len(new_line))] + new_line
-            temp_board[i] = new_line
-
-        temp_board2 = list(zip(*temp_board))
-        board = [list(i) for i in temp_board2]
+        
+        if not change_rc: # 빈칸으로 변해야 할게 없다면
+            return answer # 정답 반환
+        else:
+            answer += len(change_rc)
+            
+            for r, c in change_rc: # 빈칸 변환
+                board[r][c] = ""
+            
+            # 위에 있는 블록들 아래로 내려보내기
+            for r in range(n):
+                temp = []
+                cnt = 0
+                for c in range(m):
+                    if board[r][c] != "":
+                        temp.append(board[r][c])
+                    else:
+                        cnt += 1
+                
+                board[r] = ["" for _ in range(cnt)] + temp
 
     return answer
